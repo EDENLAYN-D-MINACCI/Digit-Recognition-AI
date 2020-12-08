@@ -1,0 +1,15 @@
+body{
+    height: 100%;
+    margin: 0px;
+}
+
+canvas{
+    border: 1px solid black;
+}
+
+.body-center{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

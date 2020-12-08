@@ -1,0 +1,24 @@
+{% extends "base.html" %}  
+
+{% block content %}
+
+<div class="split left">
+    <div class="centered">
+        <canvas id="canvas" class="m-3"></canvas>
+        <button id="clear-button" class="btn btn-dark">CLEAR</button>
+        <button id="analyze-button" name="analyze-button"  class="btn btn-dark">ANALYZE</button>
+    </div>
+</div>
+
+<div class="split right">
+    <div class="centered">
+            <h4> <strong>prediction (argmax): </strong><span id="argmax"></span></h4>
+            <h6> <strong>prediction (softmax): </strong><span id="softmax"></span></h6>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+  
