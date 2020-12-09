@@ -1,10 +1,10 @@
-from keras.models import load_model
+from tensorflow import keras.models.load_model
 import cv2, base64
 import numpy as np
 
 
 #loading the model
-model = load_model("C:/Users/AKUMA/Desktop/Repository/digit-recognition/mnist_digit_recog_cnn_2-conv-128-nodes-1-dense-17-04-2020_00-09_Ver16.h5")
+model = keras.models.load_model("C:/Users/AKUMA/Desktop/Repository/digit-recognition/mnist_digit_recog_cnn_2-conv-128-nodes-1-dense-17-04-2020_00-09_Ver16.h5")
 
 
 def base64_to_nparray(URL):
