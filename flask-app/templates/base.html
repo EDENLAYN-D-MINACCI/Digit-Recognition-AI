@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/canvas.css') }}">
-    <title>Video Streaming Demonstration</title>
+    <title>Digit Recognition AI</title>
   </head>
   <body>
     {% block content %}{% endblock %}
@@ -21,5 +21,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
     <script src="{{url_for('static', filename='js/canvas.js')}}"></script>
+    <script src="{{url_for('static', filename='js/stream.js')}}"></script>
   </body>
 </html>

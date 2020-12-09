@@ -1,9 +1,14 @@
 {% extends "base.html" %}  
 
 {% block content %}
-<div id="div-video">
-    <h1>Video Streaming Demonstration</h1>
-     <img id="bg" src="{{ url_for('stream') }}">
+<div>
+    <a href="{{ url_for('stream') }}" target="_blank">
+        <button>open stream</button>
+    </a>
+<div>
+    <button class="filter" value="gray">gray</button>
+    <button class="filter" value="blur">blur</button>
+    <button class="filter" value="thres">thres</button>
 </div>
 {% endblock %}
  

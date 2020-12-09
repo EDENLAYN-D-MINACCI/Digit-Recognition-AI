@@ -1,31 +1,10 @@
 from flask import Flask, render_template, Response, request, make_response, jsonify
-from digit_preprocessing import analyze_canvas
-import cv2
+from digit_preprocessing import analyze_canvas, analyze_frame
 import logging
 
 app = Flask(__name__)
 logger = logging.getLogger(__name__)  # or __name__ for current module
 logger.setLevel(logging.DEBUG)
-camera = cv2.VideoCapture(0)
-
-@app.route('/print')
-def printMsg():
-    app.logger.warning('testing warning log')
-    app.logger.error('testing error log')
-    app.logger.info('testing info log')
-    return "Check your console"
-
-def gen_frames():  
-    while True:
-        success, frame = camera.read()  # read the camera frame
-        if not success:
-            break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
-
 
 
 @app.route('/canvas', methods=['POST', 'GET'])
@@ -41,11 +20,23 @@ def canvas():
     return render_template('canvas.html')
     
 
-
-@app.route('/stream')
+@app.route('/stream', methods=['POST', 'GET'])
 def stream():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    preprocessing_stage = "default"
+
+    if request.method == "POST":
+        preprocessing_stage = request.get_json()
     
+    return Response(analyze_frame(preprocessing_stage), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+    
+@app.route('/stream-parameter')
+def stream_template():
+    return render_template('stream.html')
+
+    
+
+
 
 
 if __name__ == '__main__':
@@ -54,11 +45,3 @@ if __name__ == '__main__':
 
 
 
-def get_frame(self):
-    #extracting frames
-    ret, frame = self.video.read()
-    gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
-    
-    # encode OpenCV raw frame to jpg and displaying it
-    ret, jpeg = cv2.imencode('.jpg', gray)
-    return jpeg.tobytes()
