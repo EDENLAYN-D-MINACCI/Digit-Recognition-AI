@@ -4,7 +4,7 @@ import numpy as np
 
 
 #loading the model
-model = load_model("C:/Users/AKUMA/Desktop/Repository/digit-recognition/mnist_digit_recog_cnn_2-conv-128-nodes-1-dense-17-04-2020_00-09_Ver16.h5")
+model = load_model("digit-recognition/model/mnist_digit_recog_cnn_2-conv-128-nodes-1-dense-17-04-2020_00-09_Ver16.h5")
 
 
 def base64_to_nparray(URL):
