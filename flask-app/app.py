@@ -2,12 +2,13 @@ from flask import Flask, render_template, Response, request, make_response, json
 from digit_preprocessing import analyze_canvas, analyze_frame
 import logging
 
+APP_ROOT = "https://digit-recog-ai.herokuapp.com"
 app = Flask(__name__)
 logger = logging.getLogger(__name__)  # or __name__ for current module
 logger.setLevel(logging.DEBUG)
 
 
-@app.route('/canvas', methods=['POST', 'GET'])
+@app.route(APP_ROOT + '/canvas', methods=['POST', 'GET'])
 def canvas():
 
     prediction = {}
@@ -20,7 +21,7 @@ def canvas():
     return render_template('canvas.html')
     
 
-@app.route('/stream', methods=['POST', 'GET'])
+@app.route(APP_ROOT + '/stream', methods=['POST', 'GET'])
 def stream():
     preprocessing_stage = "default"
 
@@ -30,7 +31,7 @@ def stream():
     return Response(analyze_frame(preprocessing_stage), mimetype='multipart/x-mixed-replace; boundary=frame')
 
     
-@app.route('/stream-parameter')
+@app.route(APP_ROOT + '/stream-parameter')
 def stream_template():
     return render_template('stream.html')
 
